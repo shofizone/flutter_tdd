@@ -9,7 +9,7 @@ class NumberTrivia extends Equatable {
   @JsonKey(name: 'text')
   final String text;
   @JsonKey(name: 'number')
-  final String number;
+  final int number;
 
   NumberTrivia({@required this.text, @required this.number})
       : super([text, number]);

@@ -1,15 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'number_trivia.dart';
+part of 'number_trivia_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NumberTrivia _$NumberTriviaFromJson(Map<String, dynamic> json) {
-  return NumberTrivia(
-      text: json['text'] as String, number: json['number'] as int);
+NumberTriviaModel _$NumberTriviaModelFromJson(Map<String, dynamic> json) {
+  return NumberTriviaModel(
+      text: json['text'] as String, number: (json['number'] as num).toInt());
 }
 
-Map<String, dynamic> _$NumberTriviaToJson(NumberTrivia instance) =>
+Map<String, dynamic> _$NumberTriviaModelToJson(NumberTriviaModel instance) =>
     <String, dynamic>{'text': instance.text, 'number': instance.number};
