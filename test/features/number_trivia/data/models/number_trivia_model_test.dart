@@ -6,43 +6,61 @@ import 'package:ttd_clean_architecture/features/number_trivia/domain/entities/nu
 
 import '../../../../fixture/fixture_reader.dart';
 
+void main() {
+  final tNumberTriviaModel = NumberTriviaModel(number: 1, text: "Test Text");
 
-
-
-void main(){
-  final tNumberTriviaModel = NumberTriviaModel(number: 1, text:"Test Text");
-
-
-  test("should be a subclass of NumberTrivia entity",()async{
+  test("should be a subclass of NumberTrivia entity", () async {
     expect(tNumberTriviaModel, isA<NumberTrivia>());
   });
 
-
-  group("fromJson", (){
-    test("Should return a valid model when the JSON number is an integer",(){
-
+  group("fromJson", () {
+    test("Should return a valid model when the JSON number is an integer", () {
       /// arrange
-      final Map<String,dynamic> jsonMap =  json.decode(fixture('trivia.json'));
+      final Map<String, dynamic> jsonMap = json.decode(fixture('trivia.json'));
 
       /// act
       final result = NumberTriviaModel.fromJson(jsonMap);
-      
+
       /// assert
       expect(result, tNumberTriviaModel);
-      
     });
 
-    test("Should return a valid model when the JSON number is an double",(){
-
+    test("Should return a valid model when the JSON number is an double", () {
       /// arrange
-      final Map<String,dynamic> jsonMap =  json.decode(fixture('trivia_double.json'));
+      final Map<String, dynamic> jsonMap =
+          json.decode(fixture('trivia_double.json'));
 
       /// act
       final result = NumberTriviaModel.fromJson(jsonMap);
 
       /// assert
       expect(result, tNumberTriviaModel);
+    });
+  });
 
+  group("toJson", () {
+    test("Should return a JSON map containing the proper data", () async {
+      final result = tNumberTriviaModel.toJson();
+
+      final expectedMap = {
+        "text": "Test Text",
+        "number": 1,
+      };
+
+      expect(result,expectedMap);
+    });
+  });
+
+  group("toJson", () {
+    test("Should return a JSON map containing the proper data", () async {
+      final result = tNumberTriviaModel.toJson();
+
+      final expectedMap = {
+        "text": "Test Text",
+        "number": 1.0,
+      };
+
+      expect(result,expectedMap);
     });
   });
 }

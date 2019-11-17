@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ttd_clean_architecture/core/error/failures.dart';
 import 'package:ttd_clean_architecture/core/usecases/uscases.dart';
-import 'package:ttd_clean_architecture/features/number_trivia/data/datasource/repositories/number_trivia_repository.dart';
+import 'package:ttd_clean_architecture/features/number_trivia/domain/reposiotries/number_trivia_repository.dart';
 import 'package:ttd_clean_architecture/features/number_trivia/domain/entities/number_trivia.dart';
 
 class GetConcreteNumberTrivia implements UseCase<NumberTrivia,Params>{

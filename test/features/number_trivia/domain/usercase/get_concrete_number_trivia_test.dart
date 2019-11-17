@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:ttd_clean_architecture/core/error/failures.dart';
-import 'package:ttd_clean_architecture/features/number_trivia/data/datasource/repositories/number_trivia_repository.dart';
+import 'package:ttd_clean_architecture/features/number_trivia/domain/reposiotries/number_trivia_repository.dart';
 import 'package:ttd_clean_architecture/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:ttd_clean_architecture/features/number_trivia/domain/usecases/GetConcreteNumberTrivia.dart';
 
