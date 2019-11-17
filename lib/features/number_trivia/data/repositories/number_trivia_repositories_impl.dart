@@ -13,7 +13,7 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository{
 
   @override
   Future<Either<Failure, NumberTrivia>> getRandomNumberTrivia() {
-    // TODO: implement getRandomNumberTrivia
+
     return null;
   }
 }
