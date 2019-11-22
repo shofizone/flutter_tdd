@@ -18,7 +18,7 @@ class MockLocalDataSource extends Mock implements NumberTriviaLocalDataSource {}
 class MockNetworkInfo extends Mock implements NetworkInfo {}
 
 void main() {
-  NumberTriviaRepositoryImpl repositoryImpl;
+  NumberTriviaRepositoryImpl repository;
   MockRemoteDataSource mockRemoteDataSource;
   MockLocalDataSource mockLocalDataSource;
   MockNetworkInfo mockNetworkInfo;
@@ -27,7 +27,7 @@ void main() {
     mockRemoteDataSource = MockRemoteDataSource();
     mockLocalDataSource = MockLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
-    repositoryImpl = NumberTriviaRepositoryImpl(
+    repository = NumberTriviaRepositoryImpl(
       remoteDataSource: mockRemoteDataSource,
       localDataSource: mockLocalDataSource,
       networkInfo: mockNetworkInfo,
@@ -45,7 +45,7 @@ void main() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
       /// act
-      repositoryImpl.getConcreteNumberTrivia(1);
+      repository.getConcreteNumberTrivia(1);
 
       /// assert
       verify(mockNetworkInfo.isConnected);
@@ -65,7 +65,7 @@ void main() {
             when(mockRemoteDataSource.getConcreteNumberTrivia(any)).thenAnswer((_)async=> tNumberTriviaModel);
 
             //act
-                final result = await repositoryImpl.getConcreteNumberTrivia(tNumber);
+                final result = await repository.getConcreteNumberTrivia(tNumber);
 
                 //assert
                 verify(mockRemoteDataSource.getConcreteNumberTrivia(tNumber));
@@ -80,7 +80,7 @@ void main() {
             when(mockRemoteDataSource.getConcreteNumberTrivia(any)).thenAnswer((_)async=> tNumberTriviaModel);
 
             //act
-         await repositoryImpl.getConcreteNumberTrivia(tNumber);
+         await repository.getConcreteNumberTrivia(tNumber);
 
             //assert
             verify(mockRemoteDataSource.getConcreteNumberTrivia(tNumber));
@@ -99,7 +99,7 @@ void main() {
             when(mockRemoteDataSource.getConcreteNumberTrivia(any)).thenThrow(ServerException());
 
             //act
-            final result = await repositoryImpl.getConcreteNumberTrivia(tNumber);
+            final result = await repository.getConcreteNumberTrivia(tNumber);
 
             //assert
             verify(mockRemoteDataSource.getConcreteNumberTrivia(tNumber));
@@ -119,6 +119,19 @@ void main() {
 
       test("should return locally cached data when is present", ()async{
 
+        // arrange
+        when(mockLocalDataSource.getLastNumberTrivia()).thenAnswer((_) async => tNumberTriviaModel);
+
+
+        //act
+        final result = await repository.getConcreteNumberTrivia(tNumber); 
+
+        //assert
+        verifyZeroInteractions(mockRemoteDataSource);
+        verify(mockLocalDataSource.getLastNumberTrivia());
+        expect(result, equals(Right(tNumberTrivia)));
+
+        
       });
     });
 
